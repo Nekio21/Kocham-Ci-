@@ -90,7 +90,14 @@ class MainActivity : ComponentActivity() {
 
     private fun sendSMS(context: Context) {
 
-        val smsManager = context.getSystemService(SmsManager::class.java)
+        val smsManager:SmsManager
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S){
+             smsManager = context.getSystemService(SmsManager::class.java)
+
+        } else {
+            smsManager =  SmsManager.getDefault()
+        }
 
         arrayText.shuffle()
 
